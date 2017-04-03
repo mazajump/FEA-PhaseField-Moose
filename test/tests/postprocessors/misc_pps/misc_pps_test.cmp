@@ -1,0 +1,4 @@
+# Do not compare elapsed times
+GLOBAL VARIABLES (all)
+	!elapsed_time
+	!residual

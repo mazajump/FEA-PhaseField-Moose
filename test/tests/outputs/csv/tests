@@ -1,0 +1,55 @@
+[Tests]
+  [./steady]
+    # Tests output of postprocessors and scalars to CSV files for steady state problems
+    type = CSVDiff
+    input = 'csv.i'
+    csvdiff = 'csv_out.csv'
+  [../]
+  [./transient]
+    # Tests output of postprocessors and scalars to CSV files for transient propblems
+    type = CSVDiff
+    input = 'csv_transient.i'
+    csvdiff = 'csv_transient_out.csv'
+  [../]
+  [./no_time]
+    # Tests output of postprocessors and scalars to CSV files for transient propblems without a time column
+    type = CSVDiff
+    input = 'csv_no_time.i'
+    csvdiff = 'csv_no_time_out.csv'
+  [../]
+  [./transient_exodus]
+    # Tests output of postprocessors and scalars to Exodus files for transient propblems
+    type = Exodiff
+    input = 'csv_transient.i'
+    exodiff = 'csv_transient_out.e'
+    cli_args = 'Outputs/csv=false Outputs/exodus=true'
+    prereq = transient
+  [../]
+  [./restart_part1]
+    # First part of CSV restart test, CSV files should not append
+    type = CSVDiff
+    input = csv_restart_part1.i
+    csvdiff = 'csv_restart_part1_out.csv'
+  [../]
+  [./restart_part2]
+    # Second part of CSV restart test
+    type = CSVDiff
+    input = csv_restart_part2.i
+    csvdiff = 'csv_restart_part2_out.csv'
+    prereq = restart_part1
+  [../]
+  [./restart_part2_append]
+    # Second part of CSV restart test, with CSV file appending
+    type = CSVDiff
+    input = csv_restart_part2.i
+    csvdiff = 'csv_restart_part2_append_out.csv'
+    prereq = restart_part2
+    cli_args = 'Outputs/csv/file_base=csv_restart_part2_append_out Outputs/csv/append_restart=true'
+  [../]
+  [./align]
+    # Test the alignment, delimiter, and precision settings
+    type = CSVDiff
+    input = csv_align.i
+    csvdiff = 'csv_align_out.csv'
+  [../]
+[]

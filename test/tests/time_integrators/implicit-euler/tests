@@ -1,0 +1,23 @@
+[Tests]
+  [./test]
+    type = 'Exodiff'
+    input = 'ie.i'
+    exodiff = 'ie_out.e'
+    group = 'requirements'
+  [../]
+
+  [./adapt]
+    type = 'Exodiff'
+    input = 'ie_adapt.i'
+    exodiff = 'ie_adapt_out.e-s005'
+    group = 'adaptive'
+  [../]
+
+  [./monomials]
+    type = 'PetscJacobianTester'
+    input = 'ie-monomials.i'
+    ratio_tol = 1e-7
+    difference_tol = 1e-6
+    recover = false
+  [../]
+[]

@@ -1,0 +1,36 @@
+# Linguist overrides
+
+# These paths do not work properly with linguist yet, but they should (2/27/2015)
+doc/* linguist-vendored
+tests/* linguist-vendored
+contrib/* linguist-vendored
+
+# Skipping explicit file types
+*.eps linguist-vendored
+*.m linguist-vendored
+*.tex linguist-vendored
+*.e linguist-vendored
+*.js linguist-vendored
+*.nb linguist-vendored
+*.css linguist-vendored
+*.html linguist-vendored
+*.xml linguist-vendored
+
+*.C linguist-language=C++
+docs/media/**/*.png filter=lfs diff=lfs merge=lfs -text
+docs/media/**/*.gif filter=lfs diff=lfs merge=lfs -text
+docs/media/**/*.svg filter=lfs diff=lfs merge=lfs -text
+
+# TODO(rwcarlsen): Remove this after a while.
+framework/include/**/*.h merge=clang-format
+framework/src/**/*.C     merge=clang-format
+test/include/**/*.h      merge=clang-format
+test/src/**/*.C          merge=clang-format
+modules/**/include/**/*.h   merge=clang-format
+modules/**/src/**/*.C       merge=clang-format
+examples/**/*.C          merge=clang-format
+examples/**/*.h          merge=clang-format
+unit/**/*.C              merge=clang-format
+unit/**/*.h              merge=clang-format
+tutorials/**/*.C         merge=clang-format
+tutorials/**/*.h         merge=clang-format

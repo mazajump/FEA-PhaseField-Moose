@@ -1,0 +1,94 @@
+[Tests]
+  [./test]
+    type = 'Exodiff'
+    input = 'stateful_prop_test.i'
+    exodiff = 'out.e'
+  [../]
+
+  [./implicit_stateful]
+    type = 'Exodiff'
+    input = 'implicit_stateful.i'
+    exodiff = 'implicit_stateful_out.e'
+    allow_warnings = true
+  [../]
+
+  [./test_csv]
+    type = 'CSVDiff'
+    input = 'stateful_prop_test.i'
+    cli_args = 'Outputs/csv=true'
+    csvdiff = 'out.csv'
+    prereq = 'test'
+  [../]
+
+  [./computing_initial_residual_test]
+    type = 'Exodiff'
+    input = 'computing_initial_residual_test.i'
+    exodiff = 'computing_initial_residual_test_out.e'
+  [../]
+
+  [./test_older]
+    type = 'Exodiff'
+    input = 'stateful_prop_test_older.i'
+    exodiff = 'out_older.e'
+  [../]
+
+  [./test_older_mpi_threads]
+    type = 'Exodiff'
+    input = 'stateful_prop_test_older.i'
+    exodiff = 'out_older.e'
+    min_parallel = 2
+    min_threads = 2
+    prereq = 'test_older test_older_csv'
+  [../]
+
+  [./spatial_test]
+    type = 'Exodiff'
+    input = 'stateful_prop_spatial_test.i'
+    exodiff = 'out_spatial.e'
+    cli_args = '--error'
+  [../]
+
+  [./spatial_bnd_only]
+    type = 'Exodiff'
+    input = 'stateful_prop_on_bnd_only.i'
+    exodiff = 'out_bnd_only.e'
+    allow_warnings = true
+  [../]
+
+  [./stateful_copy]
+    type = 'Exodiff'
+    input = 'stateful_prop_copy_test.i'
+    exodiff = 'out_stateful_copy.e'
+    max_parallel = 1
+    cli_args = '--error'
+  [../]
+
+  [./test_older_csv]
+    type = 'CSVDiff'
+    input = 'stateful_prop_test_older.i'
+    csvdiff = 'out_older.csv'
+    cli_args = 'Outputs/csv=true --error'
+    max_parallel = 1
+    prereq = 'test_older'
+  [../]
+
+  [./adaptivity]
+    type = 'Exodiff'
+    input = 'stateful_prop_adaptivity_test.i'
+    exodiff = 'stateful_prop_adaptivity_test_out.e-s003'
+    cli_args = '--error'
+  [../]
+
+  [./spatial_adaptivity]
+    type = 'Exodiff'
+    input = 'spatial_adaptivity_test.i'
+    exodiff = 'spatial_adaptivity_test_out.e-s003'
+    cli_args = '--error'
+  [../]
+
+  [./many_stateful_props]
+    type = 'Exodiff'
+    input = 'many_stateful_props.i'
+    exodiff = 'many_stateful_props_out.e'
+  [../]
+[]

@@ -1,0 +1,56 @@
+[Tests]
+  [./all]
+    type = 'Exodiff'
+    input = 'output.i'
+    exodiff = 'output_out.e'
+  [../]
+  [./all_via_outputs]
+    # Test the ability for Output objects to enable all material property output
+    type = 'Exodiff'
+    input = 'output_via_outputs.i'
+    exodiff = 'output_via_outputs_out.e'
+  [../]
+  [./limit_via_outputs]
+    # Test the ability for Output objects to enable specific material property outputs
+    type = 'Exodiff'
+    input = 'limited_via_outputs.i'
+    exodiff = 'limited_via_outputs_out.e'
+  [../]
+  [./block_via_outputs]
+    # Test the ability for Output objects to enable specific material property outputs across blocks
+    type = 'Exodiff'
+    input = 'block_via_outputs.i'
+    exodiff = 'block_via_outputs_out.e'
+  [../]
+  [./block]
+    type = 'Exodiff'
+    input = 'output_block.i'
+    exodiff = 'output_block_out.e'
+  [../]
+  [./block_displaced]
+    type = 'Exodiff'
+    input = 'output_block_displaced.i'
+    exodiff = 'output_block_displaced_exodus.e'
+  [../]
+  [./boundary]
+    type = 'Exodiff'
+    input = 'output_boundary.i'
+    exodiff = 'output_boundary_out.e'
+  [../]
+  [./multiple_files]
+    type = Exodiff
+    input = output_multiple_files.i
+    exodiff = 'output_multiple_files_exodus1.e output_multiple_files_exodus2.e'
+  [../]
+  [./invalid_outputs]
+    type = RunException
+    input = output.i
+    expect_err = "The output object 'garbage' is not a defined output object"
+    cli_args = 'Outputs/exodus=false Materials/test_material/outputs=garbage'
+  [../]
+  [./steady]
+    type = Exodiff
+    input = 'output_steady.i'
+    exodiff = 'output_steady_out.e'
+  [../]
+[]

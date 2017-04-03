@@ -1,0 +1,8 @@
+[Tests]
+  [./lid_driven]
+    type = 'Exodiff'
+    input = 'lid_driven.i'
+    exodiff = 'lid_driven_out.e'
+    custom_cmp = 'lid_driven.cmp'
+  [../]
+[]

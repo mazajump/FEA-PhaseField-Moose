@@ -1,0 +1,15 @@
+[Tests]
+  [./test]
+    type = 'Exodiff'
+    input = 'test.i'
+    exodiff = 'test_out.e'
+    scale_refine = 5
+  [../]
+
+  [./monomial]
+    type = 'Exodiff'
+    input = 'monomial.i'
+    exodiff = 'monomial_out.e'
+    scale_refine = 5
+  [../]
+[]

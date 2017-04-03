@@ -1,0 +1,20 @@
+[Tests]
+  [./test_interval]
+    type = 'Exodiff'
+    input = 'pps_out_interval.i'
+    exodiff = 'pps_out_interval.e'
+  [../]
+
+  [./test_interval_mismatch]
+    type = 'Exodiff'
+    input = 'pps_interval_mismatch.i'
+    exodiff = 'pps_interval_mismatch_out.e'
+  [../]
+
+  [./test_interval_verify]
+    type = 'RunApp'
+    input = 'pps_out_interval.i'
+    expect_out = '(?:^\|\s+\d\.\d.*\n){11}'
+    prereq = 'test_interval'
+  [../]
+[]

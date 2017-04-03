@@ -1,0 +1,64 @@
+[Tests]
+  [./uniform_refine_refine_test_2]
+    type = 'Exodiff'
+    input = 'exodus_refined_refined_restart_2_test.i'
+    exodiff = 'exodus_refined_refined_restart_2.e'
+    prereq = 'uniform_refine_test_1'
+  [../]
+
+  [./uniform_refine_test_2]
+    type = 'Exodiff'
+    input = 'exodus_refined_restart_2_test.i'
+    exodiff = 'exodus_refined_restart_2.e'
+    prereq = 'uniform_refine_test_1'
+  [../]
+
+  [./uniform_refine_test_1]
+    type = 'Exodiff'
+    input = 'exodus_refined_restart_1_test.i'
+    exodiff = 'exodus_refined_restart_1.e'
+    recover = false
+  [../]
+
+  [./test_1]
+    type = 'Exodiff'
+    input = 'restart_diffusion_test_steady.i'
+    exodiff = 'steady_out.e'
+  [../]
+
+  [./test_2]
+    type = 'Exodiff'
+    input = 'restart_diffusion_test_transient.i'
+    exodiff = 'out.e'
+    prereq = 'test_1'
+  [../]
+
+  [./test_2_new_name]
+    type = 'Exodiff'
+    input = 'restart_diffusion_test_transient_new_name.i'
+    exodiff = 'restart_diffusion_test_transient_new_name_out.e'
+    prereq = 'test_1'
+  [../]
+
+  # Restart using "LAST"
+  [./restart_use_end_part1]
+    type = 'RunApp'
+    input = 'restart_diffusion_from_end_part1.i'
+  [../]
+
+  [./restart_use_end_part2]
+    type = 'Exodiff'
+    input = 'restart_diffusion_from_end_part2.i'
+    exodiff = 'restart_diffusion_from_end_part2_out.e'
+    prereq = 'restart_use_end_part1'
+  [../]
+
+  [./restart_use_end_error_check]
+    type = 'RunException'
+    input = 'restart_diffusion_from_end_part2.i'
+    expect_err = 'Invalid value passed as "initial_from_file_timestep". Expected "LATEST" or a valid integer between \d+ and \d+ inclusive, received \d+'
+
+    cli_args = 'Variables/u/initial_from_file_timestep=8'
+    prereq = 'restart_use_end_part2'
+  [../]
+[]

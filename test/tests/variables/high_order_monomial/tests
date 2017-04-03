@@ -1,0 +1,8 @@
+[Tests]
+  [./test]
+    type = 'Exodiff'
+    input = 'high_order_monomial.i'
+    exodiff = 'high_order_monomial_out.e'
+    group = 'requirements'
+  [../]
+[]

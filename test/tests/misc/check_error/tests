@@ -1,0 +1,554 @@
+[Tests]
+  [./steady_no_converge]
+    type = 'RunApp'
+    input = 'steady_no_converge.i'
+    expect_out = 'Aborting as solve did not converge'
+  [../]
+
+  [./range_check_param]
+    type = 'RunException'
+    input = 'range_check_param.i'
+    expect_err = 'Range check failed for parameter \S'
+  [../]
+
+  [./checked_pointer_param_test]
+    type = 'RunException'
+    input = 'checked_pointer_param_test.i'
+    expect_err = "quotes around a vector"
+  [../]
+
+  [./add_aux_variable_multiple_test]
+    type = 'RunException'
+    input = 'add_aux_variable_multiple_test.i'
+    expect_err = "AuxVariable with name 'q' already exists but is of a differing type!"
+  [../]
+
+  [./bad_bc_test]
+    type = 'RunException'
+    input = 'bad_bc_test.i'
+    expect_err = "A '\w+' is not a registered object"
+  [../]
+
+  [./bad_bc_var_test]
+    type = 'RunException'
+    input = 'bad_bc_var_test.i'
+    expect_err = "Variable 'foo' does not exist in this system"
+  [../]
+
+  [./bad_enum_test]
+    type = 'RunException'
+    input = 'bad_enum_test.i'
+    expect_err = 'Invalid option "\w+" in MooseEnum.'
+  [../]
+
+  [./bad_executioner_test]
+    type = 'RunException'
+    input = 'bad_executioner_test.i'
+    expect_err = "A '\w+' is not a registered object"
+  [../]
+
+  [./bad_kernel_test]
+    type = 'RunException'
+    input = 'bad_kernel_test.i'
+    expect_err = "A '\w+' is not a registered object"
+  [../]
+
+  [./bad_kernel_var_test]
+    type = 'RunException'
+    input = 'bad_kernel_var_test.i'
+    expect_err = "Unknown variable"
+  [../]
+
+  [./Badd_material_test]
+    type = 'RunException'
+    input = 'bad_material_test.i'
+    expect_err = "A '\w+' is not a registered object"
+  [../]
+
+  [./bad_parsed_function_vars_test]
+    type = 'RunException'
+    input = 'bad_parsed_function_vars.i'
+    expect_err = 'The variables \"x, y, z, and t\" in the ParsedFunction are pre-declared for use and must not be declared in \"vars\"'
+  [../]
+
+  [./bad_second_order_test]
+    type = 'RunException'
+    input = 'bad_second_order_test.i'
+    expect_err = 'ERROR: Finite element LAGRANGE on geometric element QUAD4\nonly supports FEInterface::max_order = 1, not fe_type.order = 2'
+    method = 'DBG'
+  [../]
+
+  [./deprecated_block_test]
+    type = 'RunException'
+    input = 'deprecated_block_test.i'
+    expect_err = "Input file block '\S+' has been deprecated."
+  [../]
+
+  [./deprecated_param_default]
+    type = 'RunException'
+    input = 'deprecated_param_test.i'
+    expect_err = "The parameter \w+ is deprecated."
+    cli_args = '--error Kernels/nan/deprecated_default=1'
+  [../]
+
+  [./deprecated_param_no_default]
+    type = 'RunException'
+    input = 'deprecated_param_test.i'
+    expect_err = "The parameter \w+ is deprecated."
+    cli_args = '--error Kernels/nan/deprecated_no_default=1'
+  [../]
+
+  [./double_restrict_uo_test]
+    type = 'RunException'
+    input = 'double_restrict_uo.i'
+    expect_err = "Attempted to restrict the object '\S+' to a boundary, but the object is already restricted"
+  [../]
+
+  [./dynamic_check_name_block_mismatch_test]
+    type = 'RunException'
+    input = 'check_dynamic_name_block_mismatch.i'
+    expect_err = "You must supply the same number of block ids and names parameters"
+  [../]
+
+  [./dynamic_check_name_block_test]
+    type = 'RunException'
+    input = 'check_dynamic_name_block.i'
+    expect_err = "The following dynamic block name is not unique: \w+"
+  [../]
+
+  [./dynamic_check_name_boundary_mismatch_test]
+    type = 'RunException'
+    input = 'check_dynamic_name_boundary_mismatch.i'
+    expect_err = "You must supply the same number of boundary ids and names parameters"
+  [../]
+
+  [./dynamic_check_name_boundary_test]
+    type = 'RunException'
+    input = 'check_dynamic_name_boundary.i'
+    expect_err = "The following dynamic boundary name is not unique: \w+"
+  [../]
+
+  [./linear_interp_material_check]
+    type = 'RunException'
+    input = 'linear_interp_not_increasing.i'
+    expect_err = "In LinearInterpolationMaterial \S+: x-values are not strictly increasing"
+  [../]
+
+  [./function_file_test1]
+    type = 'RunException'
+    input = 'function_file_test1.i'
+    expect_err = "In Piecewise \S+: Read more than two rows of data from file '\S+'.  Did you mean to use \"format = columns\" or set \"xy_in_file_only\" to false?"
+  [../]
+
+  [./function_file_test2]
+    type = 'RunException'
+    input = 'function_file_test2.i'
+    expect_err = "In Piecewise \S+: Read more than 2 columns of data from file '\S+'.  Did you mean to use \"format = rows\"?"
+  [../]
+
+  [./function_file_test3]
+    type = 'RunException'
+    input = 'function_file_test3.i'
+    expect_err = "In Piecewise \S+: Lengths of x and y data do not match in file '\S+'."
+  [../]
+
+  [./function_file_test4]
+    type = 'RunException'
+    input = 'function_file_test4.i'
+    expect_err = "Invalid option for format: \S+ in ic_function.  Valid options are 'rows' and 'columns'."
+  [../]
+
+  [./function_file_test5]
+    type = 'RunException'
+    input = 'function_file_test5.i'
+    expect_err = "In Piecewise \S+: Cannot specify 'data_file' and 'x', 'y', or 'xy_data' together."
+  [../]
+
+  [./function_file_test6]
+    type = 'RunException'
+    input = 'function_file_test6.i'
+    expect_err = "In Piecewise \S+: Cannot specify 'x', 'y', and 'xy_data' together."
+  [../]
+
+  [./function_file_test7]
+    type = 'RunException'
+    input = 'function_file_test7.i'
+    expect_err = "In Piecewise \S+: Both 'x' and 'y' must be specified if either one is specified."
+  [../]
+
+  [./function_file_test8]
+    type = 'RunException'
+    input = 'function_file_test8.i'
+    expect_err = "In Piecewise \S+: Length of data provided in 'xy_data' must be a multiple of 2."
+  [../]
+
+  [./function_file_test9]
+    type = 'RunException'
+    input = 'function_file_test9.i'
+    expect_err = "In Piecewise \S+: Either 'data_file', 'x' and 'y', or 'xy_data' must be specified."
+  [../]
+
+  [./function_file_test10]
+    type = 'RunException'
+    input = 'function_file_test10.i'
+    expect_err = "In Piecewise \S+: axis=3 outside allowable range \(0-2\)."
+  [../]
+
+  [./function_file_test11]
+    type = 'RunException'
+    input = 'function_file_test11.i'
+    expect_err = "In Piecewise \S+: Read more than 2 columns of data from file '\S+'.  Did you mean to use \"format = rows\" or set \"xy_in_file_only\" to false?"
+  [../]
+
+  [./function_file_test12]
+    type = 'RunException'
+    input = 'function_file_test12.i'
+    expect_err = "In Piecewise \S+: column 3 for y does not exist on line 0"
+  [../]
+
+  [./function_file_test13]
+    type = 'RunException'
+    input = 'function_file_test13.i'
+    expect_err = "In Piecewise \S+: column 3 for x does not exist on line 0"
+  [../]
+
+  [./function_file_test14]
+    type = 'RunException'
+    input = 'function_file_test14.i'
+    expect_err = "In Piecewise \S+: Read more than two rows of data from file '\S+'.  Did you mean to use \"format = columns\" or set \"xy_in_file_only\" to false?"
+  [../]
+
+  [./function_file_test15]
+    type = 'RunException'
+    input = 'function_file_test15.i'
+    expect_err = "In Piecewise \S+: File '\S+' with 3 valid rows contains no x data."
+  [../]
+
+  [./function_file_test16]
+    type = 'RunException'
+    input = 'function_file_test16.i'
+    expect_err = "In Piecewise \S+: File '\S+' with 3 valid rows contains no y data."
+  [../]
+
+  [./function_file_test17]
+    type = 'RunException'
+    input = 'function_file_test17.i'
+    expect_err = "In Piecewise \S+: 'x_index_in_file' and 'y_index_in_file' are set to the same value."
+  [../]
+
+  [./incomplete_kernel_block_coverage_test]
+    type = 'RunException'
+    input = 'incomplete_kernel_block_coverage_test.i'
+    expect_err = "The following block\(s\) lack an active kernel:"
+  [../]
+
+  [./incomplete_kernel_variable_coverage_test]
+    type = 'RunException'
+    input = 'incomplete_kernel_variable_coverage_test.i'
+    expect_err = "The following variable\(s\) lack an active kernel:"
+  [../]
+
+  [./invalid_elemental_to_nodal_couple_test]
+    type = 'RunException'
+    input = 'invalid_aux_coupling_test.i'
+    expect_err = "You cannot couple an elemental variable to a nodal variable"
+  [../]
+
+  [./invalid_steady_exec_test]
+    type = 'RunException'
+    input = 'invalid_steady_exec_test.i'
+    expect_err = "You have specified time kernels in your steady state simulation"
+  [../]
+
+  [./missing_active_section_test]
+    type = 'RunException'
+    input = 'missing_active_section.i'
+    expect_err = "One or more active lists in the input file are missing a referenced section"
+  [../]
+
+  [./missing_coupled_mat_prop_test]
+    type = 'RunException'
+    input = 'missing_coupled_mat_prop_test.i'
+    expect_err = "One or more Material Properties were not supplied on block"
+  [../]
+
+  [./coupled_grad_without_declare]
+    type = 'RunException'
+    input = 'coupled_grad_without_declare.i'
+    expect_err = 'The coupled variable "\w+" was never added to this objects\'s InputParameters'
+  [../]
+
+  [./missing_function_file_test]
+    type = 'RunException'
+    input = 'missing_function_file_test.i'
+    expect_err = "In Piecewise \S+: Error opening file '\S+'"
+  [../]
+
+  [./missing_function_test]
+    type = 'RunException'
+    input = 'missing_function_test.i'
+    expect_err = "Unable to find function \S+"
+  [../]
+
+  [./missing_material_prop_test]
+    type = 'RunException'
+    input = 'missing_material_prop_test.i'
+    expect_err = "The following blocks from your input mesh do not contain an active material: \d+"
+  [../]
+
+  [./missing_material_prop_test2]
+    type = 'RunException'
+    input = 'missing_material_prop_test2.i'
+    expect_err = "Material property '\w+', requested by '\w+' is not defined on block \d+"
+  [../]
+
+  [./bad_stateful_material_only_old]
+    type = 'RunException'
+    input = 'bad_stateful_material.i'
+    expect_err = "One or more Material Properties were not supplied on block"
+  [../]
+
+  [./bad_stateful_material_only_older]
+    type = 'RunException'
+    input = 'bad_stateful_material.i'
+    expect_err = "One or more Material Properties were not supplied on block"
+    cli_args = 'Materials/stateful_mat/get_older=true'
+  [../]
+
+  [./missing_mesh_test]
+    type = 'RunException'
+    input = 'missing_mesh_test.i'
+    expect_err = "Unable to open file \S+"
+  [../]
+
+  [./missing_req_par_action_obj_test]
+    type = 'RunException'
+    input = 'missing_req_par_action_obj_test.i'
+    expect_err = "The following required parameters are missing:"
+  [../]
+
+  [./missing_req_par_mesh_block_test]
+    type = 'RunException'
+    input = 'missing_req_par_mesh_block_test.i'
+    expect_err = "The following required parameters are missing:"
+  [../]
+
+  [./missing_req_par_moose_obj_test]
+    type = 'RunException'
+    input = 'missing_req_par_moose_obj_test.i'
+    expect_err = "The following required parameters are missing:"
+  [../]
+
+  [./missing_required_coupled_test]
+    type = 'RunException'
+    input = 'missing_required_coupled.i'
+    expect_err = "The following required parameters are missing:"
+  [../]
+
+  [./multi_precond_test]
+    type = 'RunException'
+    input = 'multi_precond_test.i'
+    expect_err = "More than one active Preconditioner detected"
+    max_parallel = 1
+  [../]
+
+  [./nan_test]
+    type = 'RunException'
+    input = 'nan_test.i'
+    expect_err = "Floating point exception"
+    petsc_version = '<3.4'
+    # Right now we don't check for the PETSc converged reason after the solve
+    # we only do this in the monitor callbacks, thus we don't get a PETSc
+    # error on newer versions of PETSc.
+  [../]
+
+  # This is a Steady test so it would be skipped anyway but it turns out that we read the
+  # mesh and initialize the system before exiting safely. However this input file
+  # is used by several other error tests that may also be accessing the checkpoint
+  # file so it's just easier to not execute it in the first place.
+  [./nan_no_trap_fpe_test]
+    type = 'RunApp'
+    input = 'nan_test.i'
+    cli_args = '--no-trap-fpe'
+    recover = false
+  [../]
+
+  [./nan_test_transient]
+    type = 'RunException'
+    input = 'nan_test_transient.i'
+    expect_err = "Floating point exception"
+    petsc_version = '<3.4'
+    # Right now we don't check for the PETSc converged reason after the solve
+    # we only do this in the monitor callbacks, thus we don't get a PETSc
+    # error on newer versions of PETSc.
+  [../]
+
+  [./nodal_material_test]
+    type = 'RunException'
+    input = 'nodal_material_test.i'
+    expect_err = "Nodal AuxKernel '\w+' attempted to reference material property '\w+'"
+  [../]
+
+  [./override_name_variable_test]
+    type = 'RunApp'
+    input = 'override_name_variable_test.i'
+    expect_out = "The following variables were overridden or supplied multiple times:"
+    max_parallel = 1
+    allow_warnings = true
+  [../]
+
+  [./rz_3d_error_check_test]
+    type = 'RunException'
+    input = '3D_RZ_error_check.i'
+    expect_err = "An RZ coordinate system was requested for subdomain \d+ which contains 3D elements"
+  [../]
+
+  [./same_name_variable_test]
+    type = 'RunException'
+    input = 'same_name_variable_test.i'
+    expect_err = "Cannot have an auxiliary variable and a nonlinear variable with the same name"
+  [../]
+
+  [./subdomain_restricted_auxkernel_test]
+    type = 'RunException'
+    input = 'subdomain_restricted_auxkernel_mismatch.i'
+    expect_err = "In object foo the defined blocks are outside of the domain of the variable"
+  [../]
+
+  [./subdomain_restricted_kernel_test]
+    type = 'RunException'
+    input = 'subdomain_restricted_kernel_mismatch.i'
+    expect_err = "In object body_force the defined blocks are outside of the domain of the variable"
+  [../]
+
+  [./unused_param_test]
+    type = 'RunApp'
+    expect_out = "The following parameters were unused in your input file"
+    input = 'unused_param_test.i'
+    cli_args = '--warn-unused'
+    allow_warnings = true
+    max_parallel = 1 # warning can mix on multiple processes
+  [../]
+
+  [./unused_param_test_cli]
+    type = 'RunApp'
+    expect_out = "The following parameters were unused on the command line"
+    input = 'unused_param_test.i'
+    cli_args = '--warn-unused Executioner/unused_param=true'
+    allow_warnings = true
+    max_parallel = 1 # warning can mix on multiple processes
+  [../]
+
+  [./uo_pps_name_collision_test]
+    type = 'RunException'
+    input = 'uo_pps_name_collision_test.i'
+    expect_err = 'A UserObject with the name "\w+" already exists'
+  [../]
+
+  [./uo_vector_pps_name_collision_test]
+    type = 'RunException'
+    input = 'uo_vector_pps_name_collision_test.i'
+    expect_err = 'A UserObject with the name "\w+" already exists'
+  [../]
+
+  [./wrong_object_test]
+    type = 'RunException'
+    input = 'wrong_moose_object_test.i'
+    expect_err = "Task \w+ is not registered to build \w+ derived objects"
+    method = 'opt oprof'
+  [../]
+
+  [./wrong_object_test2]
+    type = 'RunException'
+    input = 'nonexistent_pps_test.i'
+    expect_err = "Postprocessor '\S+' requested but not specified in the input file."
+  [../]
+
+  [./wrong_input_switch]
+    type = 'RunApp'
+    input = 'Foo'
+    input_switch = '-m'
+    expect_out = '^Usage:'
+  [../]
+
+  [./ics_missing_variable]
+    type = 'RunException'
+    input = 'ic_variable_not_specified.i'
+    expect_err = "The following required parameters are missing:"
+  [../]
+
+  [./ic_bnd_for_non_nodal]
+    type = 'RunException'
+    input = 'ic_bnd_for_non_nodal.i'
+    expect_err = "You are trying to set a boundary restricted variable on non-nodal variable. That is not allowed."
+  [../]
+
+  [./old_integrity_check]
+    type = 'RunException'
+    input = 'old_integrity_check.i'
+    expect_err = 'You may not couple in old or older values of \S+ when using a \"Steady\" executioner.'
+  [../]
+
+  [./node_value_off_block]
+    type = 'RunException'
+    input = 'nodal_value_off_block.i'
+    expect_err = 'Node 0 does not contain any dofs for the v variable'
+    method = 'dbg'
+  [../]
+
+  # check syntax
+  [./check_syntax_ok]
+    type = 'RunApp'
+    input = 'check_syntax_ok.i'
+    cli_args = '--check-input'
+    expect_out = 'Syntax OK'
+    max_parallel = 1
+  [../]
+
+  [./check_syntax_error]
+    type = 'RunException'
+    input = 'check_syntax_error.i'
+    cli_args = '--check-input'
+    expect_err = 'ced: The number of nodes has to be 2, but it is 3.'
+  [../]
+
+  [./check_syntax_no_input]
+    type = 'RunException'
+    input = 'Foo'
+    input_switch = '--check-input'
+    expect_err = 'You specified --check-input, but did not provide an input file. Add -i <inputfile> to your command line.'
+  [../]
+
+  [./multiple_time_int_check]
+    type = 'RunException'
+    input = time_integrator_error.i
+    expect_err = 'You cannot specify time_scheme in the Executioner and independently add a TimeIntegrator.'
+  [../]
+
+  [./calling_wrong_feproblem_method]
+    type = 'RunException'
+    input = bad_kernel_action.i
+    expect_err = "We expected to create an object of type '\w+?'\.\nInstead we received a parameters object for type '\w+?'."
+  [../]
+
+  [./wrong_displacement_order]
+    type = 'RunException'
+    input = wrong_displacement_order.i
+    expect_err = "Error: mesh has SECOND order elements, so all displacement variables must be SECOND order."
+  [../]
+
+  [./perf_log_control_from_multiapp_sub]
+    type = 'RunException'
+    input = 'multi_master.i'
+    expect_err = "Performance logging cannot currently be controlled from a Multiapp"
+    max_parallel = 1
+  [../]
+
+  [./function_conflict]
+    # Check to see if a warning is produced when a function name could evaluate to a ParsedFunction
+    type = 'RunApp'
+    input = 'function_conflict.i'
+    expect_out = "Function name 'x' could evaluate as a ParsedFunction"
+    allow_warnings = true
+  [../]
+[]

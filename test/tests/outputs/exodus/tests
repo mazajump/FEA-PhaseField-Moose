@@ -1,0 +1,53 @@
+[Tests]
+  [./basic]
+    # Tests the basic ExodusII output, using default settings
+    type = 'Exodiff'
+    input = 'exodus.i'
+    exodiff = 'exodus_out.e'
+    group = 'requirements'
+  [../]
+
+  [./input]
+    # Test the ability to write the input file to the output; this currently just checks if
+    # Moose runs with the output_input = true
+    # \TODO Find a method for comparing files with and without information records
+    type = 'CheckFiles'
+    input = 'exodus_input.i'
+    check_files = 'exodus_input_out.e'
+  [../]
+
+  [./enable_initial]
+    # Tests the enabling of the initial condition for steady-state Executioner
+    type = 'Exodiff'
+    input = 'exodus_enable_initial.i'
+    exodiff = 'exodus_enable_initial_out.e'
+  [../]
+
+  [./output_all]
+    # Tests the default output of all types (nonlinear, scalars, and postprocessors)
+    type = 'Exodiff'
+    input = 'variable_toggles.i'
+    exodiff = 'variable_toggles_out.e'
+  [../]
+
+  [./hide_output]
+    # Test the hide_variables options (hides one of each type of output)
+    type = 'Exodiff'
+    input = 'hide_variables.i'
+    exodiff = 'hide_variables_out.e'
+  [../]
+
+  [./invalid_hide]
+    # Tests that the error message for hide/show variables input is working
+    type = 'RunException'
+    input = 'invalid_hide_variables.i'
+    expect_err = 'Output\(s\) do not exist \(must be variable, scalar, postprocessor, or vector postprocessor\):'
+  [../]
+
+  [./nodal_output]
+    # Tests the elemental_as_nodal and scalar_as_nodal flags are working
+    type = 'Exodiff'
+    input = 'exodus_nodal.i'
+    exodiff = 'exodus_nodal_out.e'
+  [../]
+[]

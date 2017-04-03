@@ -1,0 +1,41 @@
+[Tests]
+  [./non_controllable_error]
+    # Test non-controllable parameter error
+    type = RunException
+    input = 'non_controllable_error.i'
+    expect_err = "The desired parameter is not controllable: Kernels/diff/non_controllable"
+    match_literal = true
+  [../]
+
+  [./multiple_params_found_warning]
+    # Test error message when single parameter is requested, but multiple exist
+    type = RunApp
+    input = 'multiple_parameters_found.i'
+    expect_out = "parameters have differing values"
+    allow_warnings = 1
+  [../]
+
+  [./no_param_found]
+    # Test that an invalid parameter name errors properly
+    type = RunException
+    input = 'no_parameter_found.i'
+    expect_err = "The controlled parameter was not found: unknown_param_name"
+    match_literal = true
+  [../]
+
+  [./tid_warehouse_error]
+    # Test tid assert on MooseObjectWarehouse
+    type = RunException
+    input = 'tid_warehouse_error.i'
+    expect_err = "Attempting to access a thread id \(12345\) greater than the number allowed by the storage item \(1\)"
+    method = 'dbg'
+  [../]
+
+  [./disable_executioner]
+    # Test that certain objects (e.g., Executioner) may not be disabled
+    type = RunException
+    input = 'disable_executioner.i'
+    expect_err = "The desired parameter is not controllable: Executioner/enable"
+  [../]
+
+[]

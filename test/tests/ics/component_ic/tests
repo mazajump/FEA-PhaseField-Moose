@@ -1,0 +1,9 @@
+[Tests]
+  [./test]
+    type = 'Exodiff'
+    input = 'component_ic.i'
+    exodiff = 'component_ic_out.e'
+    max_parallel = 2
+    max_threads = 2
+  [../]
+[]

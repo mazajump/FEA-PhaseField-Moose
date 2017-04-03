@@ -1,0 +1,8 @@
+[Tests]
+  [./test]
+    type = 'Exodiff'
+    input = 'terminator.i'
+    exodiff = 'terminator_out.e'
+    group = 'requirements'
+  [../]
+[]

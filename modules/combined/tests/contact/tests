@@ -1,0 +1,60 @@
+[Tests]
+  [./pressureAugLag_test]
+    type = 'Exodiff'
+    input = 'pressureAugLag.i'
+    exodiff = 'pressureAugLag_out.e'
+    custom_cmp = 'pressure.exodiff'
+    petsc_version = '>=3.1'
+    max_parallel = 1
+  [../]
+
+  [./pressurePenalty_test]
+    type = 'Exodiff'
+    input = 'pressurePenalty.i'
+    exodiff = 'pressurePenalty_out.e'
+    custom_cmp = 'pressure.exodiff'
+    max_parallel = 1
+  [../]
+
+  [./pressurePenalty_test_2]
+    type = 'Exodiff'
+    input = 'pressurePenalty_mechanical_constraint.i'
+    exodiff = 'pressurePenalty_mechanical_constraint_out.e'
+    custom_cmp = 'pressure.exodiff'
+    max_parallel = 1
+  [../]
+
+  [./4ElemTensionRelease_dirac]
+    type = 'Exodiff'
+    input = 4ElemTensionRelease.i
+    exodiff = 4ElemTensionRelease_out.e
+    custom_cmp = '4ElemTensionRelease.exodiff'
+    min_parallel = 4
+  [../]
+
+  [./4ElemTensionRelease_constraint]
+    type = 'Exodiff'
+    input = 4ElemTensionRelease_mechanical_constraint.i
+    exodiff = 4ElemTensionRelease_mechanical_constraint_out.e
+    custom_cmp = '4ElemTensionRelease.exodiff'
+    min_parallel = 4
+  [../]
+
+  [./4ElemTensionRelease_no_new_nonzeros]
+    type = 'Exodiff'
+    input = 4ElemTensionRelease_mechanical_constraint.i
+    exodiff = 4ElemTensionRelease_no_new_nonzeros_out.e
+    custom_cmp = '4ElemTensionRelease.exodiff'
+    cli_args = 'Problem/error_on_jacobian_nonzero_reallocation=true Outputs/file_base=4ElemTensionRelease_no_new_nonzeros_out'
+    max_parallel = 1
+  [../]
+
+  [./8ElemTensionRelease]
+    type = 'Exodiff'
+    input = 8ElemTensionRelease.i
+    exodiff = 8ElemTensionRelease_out.e
+    custom_cmp = '8ElemTensionRelease.exodiff'
+    min_parallel = 4
+    max_parallel = 4
+  [../]
+[]

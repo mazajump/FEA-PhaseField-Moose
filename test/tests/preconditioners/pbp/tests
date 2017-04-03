@@ -1,0 +1,36 @@
+[Tests]
+  [./test]
+    type = 'Exodiff'
+    input = 'pbp_test.i'
+    exodiff = 'out.e'
+    max_parallel = 1
+    deleted = '#5153'
+  [../]
+
+  [./pbp_adapt_test]
+    type = 'Exodiff'
+    input = 'pbp_adapt_test.i'
+    exodiff = 'out_pbp_adapt.e-s004'
+    custom_cmp = 'pbp_adapt_test.cmp'
+    group = 'adaptive'
+  [../]
+
+  [./check_petsc_options_test]
+    type = 'RunApp'
+    input = 'pbp_test_options.i'
+    expect_out = 'Linear'
+    max_parallel = 1
+  [../]
+
+  [./lots_of_variables]
+    type = 'Exodiff'
+    input = 'lots_of_variables.i'
+    exodiff = 'lots_of_variables_out.e'
+    max_parallel = 1
+    max_time = 30
+    compiler = 'GCC'
+    method = 'OPT OPROF'
+    valgrind = 'HEAVY'
+    min_reported_time = 20
+  [../]
+[]

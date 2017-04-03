@@ -1,0 +1,8 @@
+[Tests]
+  [./test]
+    type = 'Exodiff'
+    input = 'output_residual_test.i'
+    exodiff = 'out.e'
+    expect_out = '|residual|_2 of individual variables:'
+  [../]
+[]

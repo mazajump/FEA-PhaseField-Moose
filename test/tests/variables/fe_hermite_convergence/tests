@@ -1,0 +1,16 @@
+[Tests]
+  [./test_hermite_converge_periodic]
+    type = 'Exodiff'
+    input = 'hermite_converge_periodic.i'
+    exodiff = 'hermite_converge_periodic_out.e-s003'
+    group = 'periodic'
+    valgrind = 'HEAVY'
+  [../]
+
+  [./test_hermite_converge_neumann]
+    type = 'Exodiff'
+    input = 'hermite_converge_neumann.i'
+    exodiff = 'hermite_converge_neumann_out.e-s003'
+    valgrind = 'HEAVY'
+  [../]
+[]

@@ -1,0 +1,88 @@
+[Tests]
+  [./exodus]
+    # Test the output of linear and nonlinear iterations to Exodus
+    type = 'Exodiff'
+    input = 'iterative.i'
+    exodiff = 'iterative_out.e'
+
+    # This test relies on number of residuals being the same, so run it serially
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./exodus_steady]
+    # Test the output of linear and nonlinear iterations to Exodus for a Steady Executioner
+    type = 'Exodiff'
+    input = 'iterative_steady.i'
+    exodiff = 'iterative_steady_out.e'
+
+    # This test relies on number of residuals being the same, so run it serially
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./exodus_steady_sequence]
+    # Test the output of linear and nonlinear iterations to Exodus for a Steady Executioner
+    type = 'Exodiff'
+    input = 'iterative_steady_sequence.i'
+    exodiff = 'iterative_steady_sequence_out.e
+               iterative_steady_sequence_out.e-s002
+               iterative_steady_sequence_out.e-s003
+               iterative_steady_sequence_out.e-s004
+               iterative_steady_sequence_out.e-s005
+               iterative_steady_sequence_out.e-s006
+               iterative_steady_sequence_out.e-s007
+               iterative_steady_sequence_out.e-s008
+               iterative_steady_sequence_out.e-s009
+               iterative_steady_sequence_out.e-s010
+               iterative_steady_sequence_out.e-s011
+               iterative_steady_sequence_out.e-s012
+               iterative_steady_sequence_out.e-s013
+               iterative_steady_sequence_out.e-s014'
+
+    # This test relies on number of residuals being the same, so run it serially
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./vtk]
+    # Test the output of linear and nonlinear iterations to VTK
+    type = 'VTKDiff'
+    input = 'iterative_vtk.i'
+    vtkdiff = 'iterative_vtk_out_003_0.vtu'
+
+    # This test relies on number of residuals being the same, so run it serially
+    max_parallel = 1
+    max_threads = 1
+    vtk = true
+    mesh_mode = REPLICATED
+  [../]
+  [./csv]
+    # Test the output of linear and nonlinear iterations to CSV
+    type = 'CSVDiff'
+    input = 'iterative_csv.i'
+    csvdiff = 'iterative_csv_out.csv'
+
+    # This test relies on number of residuals being the same, so run it serially
+    max_parallel = 1
+    max_threads = 1
+    recover = false #no. of iterations is not recoverable
+  [../]
+  [./exodus_inline]
+    # Test the output of linear and nonlinear iterations to Exodus with inline start times
+    type = 'Exodiff'
+    input = 'iterative_inline.i'
+    exodiff = 'iterative_inline_out.e'
+
+    # This test relies on number of residuals being the same, so run it serially
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./exodus_start_time]
+    # Test that the nonlinear residuals will operate with only a start time
+    type = 'Exodiff'
+    input = 'iterative_start_time.i'
+    exodiff = 'iterative_start_time_out.e'
+
+    # This test relies on number of residuals being the same, so run it serially
+    max_parallel = 1
+    max_threads = 1
+  [../]
+[]

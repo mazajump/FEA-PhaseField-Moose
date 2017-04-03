@@ -1,0 +1,37 @@
+[Tests]
+  [./quad_test]
+    type = 'Exodiff'
+    input = 'extruder_quad.i'
+    exodiff = 'out_quad.e'
+  [../]
+
+  [./tri_test]
+    type = 'Exodiff'
+    input = 'extruder_tri.i'
+    exodiff = 'out_tri.e'
+  [../]
+
+  [./angle_test]
+    type = 'Exodiff'
+    input = 'extruder_angle.i'
+    exodiff = 'out_quad_angle.e'
+  [../]
+
+  [./gen_extrude]
+    type = 'Exodiff'
+    input = 'gen_extrude.i'
+    exodiff = 'out_gen.e'
+  [../]
+
+  [./extrude_remap_layer1]
+    type = 'Exodiff'
+    input = 'extrude_remap_layer1.i'
+    exodiff = 'extrude_remap_layer1_out.e'
+  [../]
+
+  [./extrude_remap_layer2]
+    type = 'Exodiff'
+    input = 'extrude_remap_layer2.i'
+    exodiff = 'extrude_remap_layer2_out.e'
+  [../]
+[]

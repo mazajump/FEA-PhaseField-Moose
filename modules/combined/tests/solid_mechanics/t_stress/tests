@@ -1,0 +1,14 @@
+[Tests]
+ [./2d]
+   type = 'Exodiff'
+   input = 't_stress_crack_infinite_plate_2d.i'
+   exodiff = 't_stress_crack_infinite_plate_out.e'
+   abs_zero = 1e-7
+ [../]
+ [./3d]
+   type = 'Exodiff'
+   input = 't_stress_ellip_crack_3d.i'
+   exodiff = 't_stress_ellip_crack_out.e'
+   abs_zero = 1e-7
+[../]
+[]

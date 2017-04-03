@@ -1,0 +1,25 @@
+[Tests]
+  [./test_expl]
+    type = 'Exodiff'
+    input = 'ode_expl_test.i'
+    exodiff = 'ode_expl_test_out.e'
+  [../]
+
+  [./test_sys_impl]
+    type = 'Exodiff'
+    input = 'ode_sys_impl_test.i'
+    exodiff = 'ode_sys_impl_test_out.e'
+    max_parallel = 2
+		max_threads = 2
+  [../]
+
+  [./test_parsed_sys_impl]
+    # uses the same gold file as the previous test
+    prereq = 'test_sys_impl'
+    type = 'Exodiff'
+    input = 'parsedode_sys_impl_test.i'
+    exodiff = 'ode_sys_impl_test_out.e'
+    max_parallel = 2
+    max_threads = 2
+  [../]
+[]

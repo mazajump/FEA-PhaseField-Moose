@@ -1,0 +1,12 @@
+[Tests]
+  [./isotropic]
+    type = 'Exodiff'
+    input = 'isotropic.i'
+    exodiff = 'isotropic_out.e'
+  [../]
+  [./anisotropic]
+    type = 'Exodiff'
+    input = 'anisotropic.i'
+    exodiff = 'anisotropic_out.e'
+  [../]
+[]

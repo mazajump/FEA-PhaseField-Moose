@@ -1,0 +1,15 @@
+[Tests]
+  [./qpl]
+    type = 'Exodiff'
+    input = 'quadrature_penetration_locator.i'
+    exodiff = 'quadrature_penetration_locator_out.e'
+    group = 'geometric'
+  [../]
+
+  [./1d_qpl]
+    type = 'Exodiff'
+    input = '1d_quadrature_penetration.i'
+    exodiff = '1d_quadrature_penetration_out.e'
+    group = 'geometric'
+  [../]
+[]

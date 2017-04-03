@@ -1,0 +1,20 @@
+[Tests]
+  [./cylinder_points]
+    type = 'Exodiff'
+    input = 'cylinder_points.i'
+    exodiff = 'cylinder_points_out.e'
+  [../]
+
+  [./cyliner_normal]
+    type = 'Exodiff'
+    input = 'cylinder_normals.i'
+    exodiff = 'cylinder_normals_out.e'
+    group = 'requirements'
+  [../]
+
+  [./cylinder_points_fixed]
+    type = 'Exodiff'
+    input = 'cylinder_normals_fixed.i'
+    exodiff = 'cylinder_normals_fixed_out.e'
+  [../]
+[]

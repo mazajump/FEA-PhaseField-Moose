@@ -1,0 +1,37 @@
+[Tests]
+  [./circle_tris]
+    type = 'Exodiff'
+    input = 'circle_tris.i'
+    exodiff = 'circle_tris_out.e'
+  [../]
+
+  [./circle_quads]
+    type = 'Exodiff'
+    input = 'circle_quads.i'
+    exodiff = 'circle_quads_out.e'
+  [../]
+
+  [./cylinder_hexes]
+    type = 'Exodiff'
+    input = 'cylinder_hexes.i'
+    exodiff = 'cylinder_hexes_out.e'
+  [../]
+
+  [./cylinder_hexes_2nd]
+    type = 'Exodiff'
+    input = 'cylinder_hexes_2nd.i'
+    exodiff = 'cylinder_hexes_2nd_out.e'
+  [../]
+
+  [./cylinder_hexes_1st_2nd]
+    type = 'Exodiff'
+    input = 'cylinder_hexes_1st_2nd.i'
+    exodiff = 'cylinder_hexes_1st_2nd_out.e'
+  [../]
+
+  [./small_sqaure]
+    type = 'Exodiff'
+    input = 'square_quads.i'
+    exodiff = 'square_quads_out.e'
+  [../]
+[]

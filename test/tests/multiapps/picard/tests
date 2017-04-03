@@ -1,0 +1,27 @@
+[Tests]
+  [./test]
+    type = 'Exodiff'
+    input = 'picard_master.i'
+    exodiff = 'picard_master_out.e'
+    rel_err = 5e-5  # Loosened for recovery tests
+  [../]
+
+  [./rel_tol]
+    type = 'Exodiff'
+    input = 'picard_rel_tol_master.i'
+    exodiff = 'picard_rel_tol_master_out.e'
+  [../]
+
+  [./abs_tol]
+    type = 'Exodiff'
+    input = 'picard_abs_tol_master.i'
+    exodiff = 'picard_abs_tol_master_out.e'
+  [../]
+
+  [./function_dt]
+    type = 'Exodiff'
+    input = 'function_dt_master.i'
+    exodiff = 'function_dt_master_out.e function_dt_master_out_sub_app0.e'
+    rel_err = 5e-5  # Loosened for recovery tests
+  [../]
+[]

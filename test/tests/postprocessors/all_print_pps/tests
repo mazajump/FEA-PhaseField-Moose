@@ -1,0 +1,9 @@
+[Tests]
+  [./test]
+    type = 'CSVDiff'
+    input = 'all_print_pps_test.i'
+    csvdiff = 'out.csv'
+    max_parallel=2
+    min_parallel=2
+  [../]
+[]

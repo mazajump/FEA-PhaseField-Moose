@@ -1,0 +1,8 @@
+[Tests]
+  [./test]
+    type = 'Exodiff'
+    input = 'position.i'
+    exodiff = 'position_out.e'
+    recover = false #see #2295
+  [../]
+[]

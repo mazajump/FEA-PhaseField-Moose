@@ -1,0 +1,13 @@
+[Tests]
+  [./test]
+    type = 'Exodiff'
+    input = 'difference_pps.i'
+    exodiff = 'difference_pps_out.e'
+  [../]
+
+  [./depend_check]
+    type = 'CSVDiff'
+    input = 'difference_depend_check.i'
+    csvdiff = 'difference_depend_check_out.csv'
+  [../]
+[]

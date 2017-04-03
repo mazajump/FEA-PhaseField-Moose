@@ -1,0 +1,9 @@
+[Tests]
+  [./test]
+    type = 'CSVDiff'
+    input = 'element_l2_norm.i'
+    csvdiff = 'element_l2_norm_out.csv'
+		max_parallel = 3
+		max_threads = 3
+  [../]
+[]

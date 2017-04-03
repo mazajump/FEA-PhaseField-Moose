@@ -1,0 +1,31 @@
+[Tests]
+  [./limit]
+    # Test the postprocessor limiting functions operate correctly
+    type = 'Exodiff'
+    input = 'postprocessor.i'
+    exodiff = 'postprocessor_exodus.e postprocessor_exodus2.e'
+  [../]
+  [./invalid_outputs]
+    # Test that an invalid outputer name in the "output" parameter is caught
+    type = 'RunException'
+    input = 'postprocessor_invalid.i'
+    expect_err = "The output object 'garbage' is not a defined output object"
+    cli_args = 'Postprocessors/num_dofs/outputs=garbage'
+  [../]
+  [./console]
+    # Test that "outputs=console" is working correctly with multiple execute_on items
+    type = 'CSVDiff'
+    input = 'postprocessor_console.i'
+    csvdiff = 'postprocessor_console_out.csv'
+  [../]
+  [./show_hide]
+    type = 'CSVDiff'
+    input = 'show_hide.i'
+    csvdiff = 'show_hide_out.csv'
+  [../]
+  [./test_hidden_shown]
+    type = 'RunException'
+    input = 'output_pps_hidden_shown_check.i'
+    expect_err = 'Output\(s\) specified to be both shown and hidden: elem_56'
+  [../]
+[]

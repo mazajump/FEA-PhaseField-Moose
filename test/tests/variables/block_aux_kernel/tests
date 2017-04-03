@@ -1,0 +1,8 @@
+[Tests]
+  [./block_aux_kernel_test]
+    type = 'Exodiff'
+    input = 'block_aux_kernel_test.i'
+    exodiff = 'out.e'
+    group = 'requirements geometric'
+  [../]
+[]

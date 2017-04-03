@@ -1,0 +1,69 @@
+[Tests]
+  [./test_inverse_power_method]
+    type = 'Exodiff'
+    input = 'ipm.i'
+    exodiff = 'ipm.e'
+    abs_zero = 1e-09
+    rel_err = 5e-05
+    recover = false
+    allow_warnings = true
+  [../]
+  [./test_nonlinear_eigen]
+    type = 'Exodiff'
+    input = 'ne.i'
+    exodiff = 'ne.e'
+    abs_zero = 1e-09
+# because more outputs are generated in this test (see the next test),
+# we have to use one processor due to the the preconditioner change.
+    max_parallel = 1
+    recover = false
+  [../]
+  [./test_nonlinear_eigen_parallel]
+    type = 'Exodiff'
+    input = 'ne.i'
+    exodiff = 'ne_final.e'
+    abs_zero = 1e-09
+# because we only output the final solution, we can test with parallelization.
+    cli_args = 'Executioner/output_after_power_iterations=false Executioner/output_before_normalization=false Outputs/file_base=ne_final Postprocessors/udiff/outputs=console'
+    recover = false
+    allow_warnings = true
+  [../]
+  [./test_nonlinear_eigen_material]
+    type = 'Exodiff'
+    input = 'ne_mat.i'
+    exodiff = 'ne_mat.e'
+    abs_zero = 1e-09
+# because more outputs are generated in this test (see the above test),
+# we have to use one processor due to the the preconditioner change.
+    max_parallel = 1
+    recover = false
+  [../]
+  [./test_normal_eigenkernel]
+    type = 'Exodiff'
+    input = 'normal_eigen_kernel.i'
+    exodiff = 'normal_eigen_kernel.e'
+    abs_zero = 1e-09
+    recover = false
+  [../]
+  [./test_another_nonlinear_eigen]
+    type = 'Exodiff'
+    input = 'ane.i'
+    exodiff = 'ane.e'
+    abs_zero = 1e-09
+    recover = false
+  [../]
+  [./test_coupled_nonlinear_eigen]
+    type = 'Exodiff'
+    input = 'ne_coupled.i'
+    exodiff = 'ne_coupled.e'
+    abs_zero = 1e-09
+    recover = false
+  [../]
+  [./test_deficient_B_eigen]
+    type = 'Exodiff'
+    input = 'ne_deficient_b.i'
+    exodiff = 'ne_deficient_b.e'
+    abs_zero = 1e-09
+    recover = false
+  [../]
+[]

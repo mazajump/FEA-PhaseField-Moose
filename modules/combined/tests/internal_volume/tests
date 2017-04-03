@@ -1,0 +1,71 @@
+[Tests]
+  [./rspherical]
+    type = 'CSVDiff'
+    input = 'rspherical.i'
+    csvdiff = 'rspherical_out.csv'
+  [../]
+
+  [./rspherical_error]
+    type = RunException
+    input = 'rspherical.i'
+    cli_args = 'Postprocessors/intVolTotal/component=1'
+    expect_err = 'With spherical coordinates, the component must be 0 in InternalVolume.'
+  [../]
+
+  [./rz]
+    type = 'CSVDiff'
+    input = 'rz.i'
+    csvdiff = 'rz_out.csv'
+  [../]
+
+  [./rz2]
+    type = 'CSVDiff'
+    input = 'rz.i'
+    csvdiff = 'rz_out.csv'
+    cli_args = 'Postprocessors/internalVolume/component=1'
+    prereq = rz
+  [../]
+
+  [./rz_error]
+    type = RunException
+    input = 'rz.i'
+    cli_args = 'Postprocessors/internalVolume/component=2'
+    expect_err = 'With cylindrical coordinates, the component must be 0 or 1 in InternalVolume.'
+  [../]
+
+  [./hex20]
+    type = 'CSVDiff'
+    input = 'hex20.i'
+    csvdiff = 'hex20_out.csv'
+  [../]
+
+  [./rz_quad8]
+    type = 'CSVDiff'
+    input = 'rz_quad8.i'
+    csvdiff = 'rz_quad8_out.csv'
+  [../]
+
+  [./rz_cone]
+    type = 'CSVDiff'
+    input = 'rz_cone.i'
+    csvdiff = 'rz_cone_out.csv'
+  [../]
+
+  [./hex8]
+    type = 'CSVDiff'
+    input = 'hex8.i'
+    csvdiff = 'hex8_out.csv'
+  [../]
+
+  [./rz_displaced]
+    type = 'CSVDiff'
+    input = 'rz_displaced.i'
+    csvdiff = 'rz_displaced_out.csv'
+  [../]
+
+  [./rz_displaced_quad8]
+    type = 'CSVDiff'
+    input = 'rz_displaced_quad8.i'
+    csvdiff = 'rz_displaced_quad8_out.csv'
+  [../]
+[]

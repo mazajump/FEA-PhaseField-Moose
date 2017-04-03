@@ -1,0 +1,112 @@
+[Tests]
+  [./nemesis_out_test]
+    type = 'CheckFiles'
+    input = 'output_test_nemesis.i'
+    check_files = 'out.e.1.0'
+    # If you run on more processors, it changes the output filename to
+    # e.g. out.e.2.0 and out.e.2.1, so this test will only pass if you
+    # run it on one processor.
+    max_parallel = 1
+    min_parallel = 1
+  [../]
+
+  [./gmv_out_test]
+    type = 'CheckFiles'
+    input = 'output_test_gmv.i'
+    check_files = 'output_test_gmv_out_0000.gmv'
+    recover = false
+  [../]
+
+  [./yaml_dump_test]
+    type = 'RunApp'
+    input = 'IGNORED'
+    expect_out = 'START YAML DATA.*END YAML DATA'
+    cli_args = '--yaml'
+  [../]
+
+  [./no_double_executioner_output]
+    type = 'RunApp'
+    input = 'IGNORED'
+    absent_out = '/Executioner/\<type\>/Transient.*/Executioner/\<type\>/Transient'
+    cli_args = '--yaml /Executioner'
+  [../]
+
+  [./tecplot_out_test]
+    type = 'CheckFiles'
+    input = 'output_test_tecplot.i'
+    check_files = 'output_test_tecplot_out_0000.dat'
+  [../]
+
+  [./tecplot_bin_test]
+    type = 'CheckFiles'
+    input = 'output_test_tecplot_binary.i'
+    check_files = 'output_test_tecplot_binary_out_0000.plt'
+    tecplot = true
+  [../]
+
+  [./tecplot_bin_test_override]
+    type = 'CheckFiles'
+    input = 'output_test_tecplot_binary.i'
+    check_files = 'output_test_tecplot_binary_out_0000.dat'
+    tecplot = false
+    allow_warnings = true
+  [../]
+
+  [./dump_test]
+    type = 'RunApp'
+    input = 'IGNORED'
+    expect_out = 'block\s*=\s*ANY_BLOCK_ID'
+    cli_args = '--dump'
+  [../]
+
+  [./gnuplot_ps_out_test]
+    type = 'CheckFiles'
+    input = 'output_test_gnuplot_ps.i'
+    check_files = 'output_test_gnuplot_ps_out.gp output_test_gnuplot_ps_out.dat'
+  [../]
+
+  [./gnuplot_png_out_test]
+    type = 'CheckFiles'
+    input = 'output_test_gnuplot.i'
+    check_files = 'output_test_gnuplot_out.gp output_test_gnuplot_out.dat'
+  [../]
+
+  [./gnuplot_gif_out_test]
+    type = 'CheckFiles'
+    input = 'output_test_gnuplot_gif.i'
+    check_files = 'output_test_gnuplot_gif_out.gp output_test_gnuplot_gif_out.dat'
+  [../]
+
+  [./pps_screen_out_warn_test]
+    type = 'RunApp'
+    input = 'pps_screen_out_warn.i'
+    expect_out = "A Postprocessor utilizes the 'outputs' parameter; however, postprocessor output is disabled for the 'console' output object."
+    allow_warnings = true
+    max_parallel = 1 # warning can mix on multiple processes
+  [../]
+
+  [./show_input_test]
+    type = 'RunApp'
+    input = 'output_test_gmv.i'
+    expect_out = 'type\s*=\s*GeneratedMesh'
+    cli_args = '--show-input'
+    prereq = 'gmv_out_test'
+  [../]
+
+  [./sln_out_test]
+    type = 'CheckFiles'
+    input = 'output_test_sln.i'
+    check_files = 'output_test_sln_out.slh'
+  [../]
+
+  [./xdr_output]
+    type = 'CheckFiles'
+    input = 'output_test_xdr.i'
+    check_files = 'output_test_xdr_out_0001.xdr output_test_xdr_out_0001_mesh.xdr'
+  [../]
+
+  [./json]
+    type = 'PythonUnitTest'
+    input = 'test_json.py'
+  [../]
+[]

@@ -1,0 +1,33 @@
+[Tests]
+  [./testRestart1]
+    type = 'RunApp'
+    input = 'LinearStrainHardeningRestart1.i'
+    recover = false
+  [../]
+
+  [./testRestart2]
+    type = 'Exodiff'
+    input = 'LinearStrainHardeningRestart2.i'
+    exodiff = 'LinearStrainHardening_test_out.e'
+    exodiff_opts = '-TM'
+    abs_zero = 1e-09
+    prereq = 'testRestart1'
+    recover = false
+  [../]
+
+  [./test_lsh]
+    type = 'Exodiff'
+    input = 'LinearStrainHardening_test.i'
+    exodiff = 'LinearStrainHardening_test_out.e'
+    abs_zero = 1e-09
+    prereq = 'testRestart2'
+    scale_refine = 2
+    recover = false
+  [../]
+
+  [./test_lsh_pressure]
+    type = 'Exodiff'
+    input = 'lsh_pressure.i'
+    exodiff = 'lsh_pressure_out.e'
+  [../]
+[]

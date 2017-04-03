@@ -1,0 +1,15 @@
+[Tests]
+  [./parsed_function]
+    type = 'Exodiff'
+    input = 'parsed_function.i'
+    exodiff = 'parsed.e'
+    recover = false #see #2295
+  [../]
+
+  [./spline_function]
+    type = 'Exodiff'
+    input = 'spline_function.i'
+    exodiff = 'spline.e'
+    recover = false #see #2295
+  [../]
+[]
